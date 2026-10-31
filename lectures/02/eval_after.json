@@ -1,0 +1,201 @@
+{
+  "summary": {
+    "label": "after",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.9047619047619048,
+    "both_rate": 0.9047619047619048,
+    "seconds": 37.6
+  },
+  "rows": [
+    {
+      "question": "配送にかかる費用は？",
+      "raw": "{\"answer\": \"配送料は全国一律 500 円ですが、5,000 円以上の購入で無料になります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "送料無料が適用される購入下限金額はいくらからですか",
+      "raw": "{\"answer\": \"配送料は全国一律 500 円ですが、5,000 円以上の購入で無料になります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "送料が500円課される条件を教えてください",
+      "raw": "{\"answer\": \"配送料は全国一律 500 円ですが、5,000 円以上の購入で無料になります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "運送便の指定は？",
+      "raw": "{\"answer\": \"配送会社はヤマト運輸を利用しており、配送日時の指定が可能です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "ヤマト運輸以外の運送会社を選べますか",
+      "raw": "{\"answer\": \"配送会社はヤマト運輸を利用しており、配送日時の指定が可能です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "荷物の配達希望日を指定することは可能ですか",
+      "raw": "{\"answer\": \"配送会社はヤマト運輸を利用しており、配送日時の指定が可能です。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "返品の条件を教えてください",
+      "raw": "{\"answer\": \"返品は商品到着後 7 日以内かつ未開封の場合に限り受け付けます。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "商品到着から返品可能な制限日数は何日ですか",
+      "raw": "{\"answer\": \"到着後 8 日以上経過した商品の返品は、いかなる理由でも受け付けられません。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "開封してしまった商品は返品の対象になりますか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "海外への届け先は？",
+      "raw": "{\"answer\": \"海外への配送は行っておりません。日本国内のみの発送となります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "海外からの注文および発送に個別対応していますか",
+      "raw": "{\"answer\": \"海外への配送は行っておりません。日本国内のみの発送となります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "日本国外宛ての発送サービスは提供されていますか",
+      "raw": "{\"answer\": \"海外への配送は行っておりません。日本国内のみの発送となります。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "到着後かなり日数が経った返品について教えてください",
+      "raw": "{\"answer\": \"到着後 8 日以上経過した商品の返品は、いかなる理由でも受け付けられません。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "到着後2週間が経過した商品でも返品できますか",
+      "raw": "{\"answer\": \"到着後 8 日以上経過した商品の返品は、いかなる理由でも受け付けられません。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "返品期限の8日目を過ぎてしまった場合はどうなりますか",
+      "raw": "{\"answer\": \"到着後 8 日以上経過した商品の返品は、いかなる理由でも受け付けられません。\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "支払方法には何がありますか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "店舗での受け取りは可能ですか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "会員登録をしないでゲスト購入することはできますか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "製品のメーカー保証期間は何年間ですか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "注文完了後に内容を変更したいのですが可能ですか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "配送状況の荷物追跡はどこでできますか",
+      "raw": "{\"answer\": \"この FAQ には記載がありません。運営に確認が必要です。\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    }
+  ]
+}
