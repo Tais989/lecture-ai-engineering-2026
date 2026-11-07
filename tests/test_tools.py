@@ -64,6 +64,24 @@ def test_lecture_summary():
     assert "まだありません" in tools.get_lecture_summary(99)
 
 
+def test_save_learning_log_appends_entry(tmp_path, monkeypatch):
+    monkeypatch.setattr(tools, "LEARNING_LOG_DIR", tmp_path / "learning_log")
+
+    result = tools.save_learning_log("今日学んだこと")
+
+    log_path = tools.LEARNING_LOG_DIR / "learning_log.md"
+    assert log_path.exists()
+    assert "今日学んだこと" in log_path.read_text(encoding="utf-8")
+    assert str(log_path) in result
+
+
+def test_save_learning_log_rejects_empty_entry(tmp_path, monkeypatch):
+    monkeypatch.setattr(tools, "LEARNING_LOG_DIR", tmp_path / "learning_log")
+
+    assert "空" in tools.save_learning_log("  \n ")
+    assert not tools.LEARNING_LOG_DIR.exists()
+
+
 def test_default_question_of_lecture1_is_answerable_from_glossary():
     """第1回の既定の質問（app.ask）は、第3回のエージェントが用語集で正しく答えられること。"""
     from app.ask import DEFAULT_QUESTION

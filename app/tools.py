@@ -6,10 +6,12 @@
 
 import json
 import random
+from datetime import datetime
 from functools import cache
 from pathlib import Path
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+LEARNING_LOG_DIR = Path(__file__).resolve().parent.parent / "learning_log"
 MAX_RESULTS = 3
 
 
@@ -104,3 +106,19 @@ def get_lecture_summary(lecture: int) -> str:
         available = sorted(p.stem for p in (DATA_DIR / "lectures").glob("*.md"))
         return f"第{lecture}回の要点はまだありません。用意されている回: {', '.join(available)}"
     return path.read_text(encoding="utf-8")
+
+
+def save_learning_log(entry: str) -> str:
+    """利用者から学習記録の保存を頼まれたとき、記録を追記する。
+
+    保存前の利用者確認は、このツールに設定された承認機能が行う。
+    """
+    if not entry.strip():
+        return "記録内容が空のため、保存しませんでした。"
+
+    LEARNING_LOG_DIR.mkdir(parents=True, exist_ok=True)
+    path = LEARNING_LOG_DIR / "learning_log.md"
+    timestamp = datetime.now().astimezone().isoformat(timespec="seconds")
+    with path.open("a", encoding="utf-8") as f:
+        f.write(f"\n## {timestamp}\n\n{entry.strip()}\n")
+    return f"学習記録を {path} に保存しました。"
