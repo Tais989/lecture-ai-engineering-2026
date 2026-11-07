@@ -34,9 +34,52 @@ def test_search_reports_not_found():
     assert "見つかりませんでした" in tools.search_glossary("存在しない用語xyz")
 
 
+def test_make_quiz_uses_glossary_term(monkeypatch):
+    terms = tools.load_glossary()
+    monkeypatch.setattr(tools.random, "choice", lambda choices: choices[0])
+
+    quiz = json.loads(tools.make_quiz())
+
+    assert quiz["question"] == f"「{terms[0]['term']}」の意味は何ですか？"
+    assert quiz["answer"] == terms[0]["definition"]
+    assert quiz["lecture"] == terms[0]["lecture"]
+
+
+def test_make_quiz_filters_by_lecture(monkeypatch):
+    terms = [term for term in tools.load_glossary() if term["lecture"] == 2]
+    monkeypatch.setattr(tools.random, "choice", lambda choices: choices[0])
+
+    quiz = json.loads(tools.make_quiz(2))
+
+    assert quiz["lecture"] == 2
+    assert quiz["answer"] == terms[0]["definition"]
+
+
+def test_make_quiz_reports_missing_lecture():
+    assert "第99回" in tools.make_quiz(99)
+
+
 def test_lecture_summary():
     assert "エージェント" in tools.get_lecture_summary(3)
     assert "まだありません" in tools.get_lecture_summary(99)
+
+
+def test_save_learning_log_appends_entry(tmp_path, monkeypatch):
+    monkeypatch.setattr(tools, "LEARNING_LOG_DIR", tmp_path / "learning_log")
+
+    result = tools.save_learning_log("今日学んだこと")
+
+    log_path = tools.LEARNING_LOG_DIR / "learning_log.md"
+    assert log_path.exists()
+    assert "今日学んだこと" in log_path.read_text(encoding="utf-8")
+    assert str(log_path) in result
+
+
+def test_save_learning_log_rejects_empty_entry(tmp_path, monkeypatch):
+    monkeypatch.setattr(tools, "LEARNING_LOG_DIR", tmp_path / "learning_log")
+
+    assert "空" in tools.save_learning_log("  \n ")
+    assert not tools.LEARNING_LOG_DIR.exists()
 
 
 def test_default_question_of_lecture1_is_answerable_from_glossary():

@@ -5,10 +5,13 @@
 """
 
 import json
+import random
+from datetime import datetime
 from functools import cache
 from pathlib import Path
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+LEARNING_LOG_DIR = Path(__file__).resolve().parent.parent / "learning_log"
 MAX_RESULTS = 3
 
 
@@ -67,6 +70,32 @@ def search_glossary(query: str) -> str:
     )
 
 
+def make_quiz(lecture: int | None = None) -> str:
+    """用語集の用語から確認問題を1問作る。
+
+    「確認問題を出して」と頼まれたときに使う。lecture が指定された場合は
+    その回の用語から、指定がない場合は用語集全体から1つ選ぶ。
+    問題と答えを返すので、利用者にはまず問題だけを出す。
+    """
+    terms = load_glossary()
+    if lecture is not None:
+        terms = [term for term in terms if term["lecture"] == lecture]
+    if not terms:
+        if lecture is None:
+            return "確認問題に使える用語がありません。"
+        return f"第{lecture}回の用語が見つからないため、確認問題を作れません。"
+
+    term = random.choice(terms)
+    return json.dumps(
+        {
+            "question": f"「{term['term']}」の意味は何ですか？",
+            "answer": term["definition"],
+            "lecture": term["lecture"],
+        },
+        ensure_ascii=False,
+    )
+
+
 def get_lecture_summary(lecture: int) -> str:
     """指定した回（1始まりの整数）の講義の要点を返す。
 
@@ -77,3 +106,19 @@ def get_lecture_summary(lecture: int) -> str:
         available = sorted(p.stem for p in (DATA_DIR / "lectures").glob("*.md"))
         return f"第{lecture}回の要点はまだありません。用意されている回: {', '.join(available)}"
     return path.read_text(encoding="utf-8")
+
+
+def save_learning_log(entry: str) -> str:
+    """利用者から学習記録の保存を頼まれたとき、記録を追記する。
+
+    保存前の利用者確認は、このツールに設定された承認機能が行う。
+    """
+    if not entry.strip():
+        return "記録内容が空のため、保存しませんでした。"
+
+    LEARNING_LOG_DIR.mkdir(parents=True, exist_ok=True)
+    path = LEARNING_LOG_DIR / "learning_log.md"
+    timestamp = datetime.now().astimezone().isoformat(timespec="seconds")
+    with path.open("a", encoding="utf-8") as f:
+        f.write(f"\n## {timestamp}\n\n{entry.strip()}\n")
+    return f"学習記録を {path} に保存しました。"
